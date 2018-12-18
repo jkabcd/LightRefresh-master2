@@ -1,0 +1,72 @@
+apply plugin: 'com.android.application'
+
+android {
+    Properties properties = new Properties();
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    def keyStorePath_ = properties.getProperty("key.keyStorePath")
+    def keyAlias_ = properties.getProperty("key.keyAlias")
+    def keyPassword_ = properties.getProperty("key.keyPassword")
+    def storePassword_ = properties.getProperty("key.storePassword")
+    def storeFile_ = file(keyStorePath_)
+    signingConfigs {
+        release {
+            keyAlias keyAlias_
+            keyPassword keyPassword_
+            storeFile storeFile_
+            storePassword storePassword_
+        }
+        debug {
+            keyAlias keyAlias_
+            keyPassword keyPassword_
+            storeFile storeFile_
+            storePassword storePassword_
+        }
+    }
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+//    productFlavors {
+//        xiaomi {
+//            applicationId 'xiaomi'
+//            signingConfig signingConfigs.release
+//        }
+//        huawei {
+//            applicationId 'huawei'
+//            signingConfig signingConfigs.release
+//        }
+//    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["constraint-layout"]
+    testImplementation rootProject.ext.dependencies["junit"]
+    androidTestImplementation rootProject.ext.dependencies["runner"]
+    androidTestImplementation rootProject.ext.dependencies["espresso-core"]
+    implementation rootProject.ext.dependencies["recyclerview"]
+    implementation project(':refresh')
+    // 添加依赖模块
+    implementation project(':footer')
+    implementation project(':header')
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+}

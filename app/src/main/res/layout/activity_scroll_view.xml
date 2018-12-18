@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:id="@+id/fl_root"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:src="@mipmap/header_background"
+        android:id="@+id/img_sc"
+        android:scaleType="fitXY"
+        android:layout_height="280dp" />
+<com.blcodes.views.lightrefresh.ScrollGroup
+    android:layout_width="match_parent"
+    android:id="@+id/sg_root"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+    <TextView
+        android:gravity="center"
+        android:layout_width="200dp"
+        android:text="120"
+        android:background="@color/colorPrimary"
+        android:textSize="20sp"
+        android:layout_height="300dp" />
+        <TextView
+            android:gravity="center"
+            android:layout_width="200dp"
+            android:text="120"
+            android:background="@color/colorPrimary"
+            android:textSize="20sp"
+            android:layout_height="300dp" />
+        <TextView
+            android:gravity="center"
+            android:layout_width="200dp"
+            android:text="120"
+            android:background="@color/colorPrimary"
+            android:textSize="20sp"
+            android:layout_height="300dp" />
+    </LinearLayout>
+    </ScrollView>
+</com.blcodes.views.lightrefresh.ScrollGroup>
+</LinearLayout>
